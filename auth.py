@@ -23,7 +23,7 @@ def reg():
         password = input("Password: ")
         if password != None and email != None:
             insert_query = """ INSERT INTO accounts (EMAIL, PASSWORD, CREATED_ON) VALUES ('{}', '{}', '{}')""".format(email, password, datetime.now())
-            cur.execute(insert_query)
+            cur.execute(insert_query) #should have hash a password here!
             conn.commit()
             cur.execute("SELECT * from accounts WHERE email='{}'".format(email))
             record = cur.fetchone()

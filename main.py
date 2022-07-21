@@ -36,10 +36,10 @@ def main(data):
 
     def is_empty(data): #to check if room is empty
         try:
-            check_query = f"""select exists(select 1 from queue where room_id='{data['room_id']}' 
-            and '{data['book_start']}' >= book_start and '{data['book_start']}' < book_end 
-            or '{data['book_end']}' > book_start and '{data['book_end']}' <= book_end 
-            or '{data['book_start']}' < book_start and '{data['book_end']}' > book_end); """
+            check_query = f"""select exists(select 1 from queue where 
+            room_id='{data['room_id']}' and '{data['book_start']}' >= book_start and '{data['book_start']}' < book_end 
+            or room_id='{data['room_id']}' and '{data['book_end']}' > book_start and '{data['book_end']}' <= book_end 
+            or room_id='{data['room_id']}' and '{data['book_start']}' < book_start and '{data['book_end']}' > book_end); """
             cur.execute(check_query)
             conn.commit()
             record = cur.fetchone()
@@ -48,7 +48,7 @@ def main(data):
             print(error)
         return False
 
-    def book():
+    def book(): #room booking  proccess
         book_start = None
         book_end = None
         try:
@@ -69,7 +69,7 @@ def main(data):
                 if is_empty({"room_id":int(room_number), "book_start":book_start, "book_end":book_end}):
                     print(f"№{room_number} Room booked in this period of time! Choose another date!")
                     main(data)
-
+                
                 insert_query = """ INSERT INTO queue (user_id, room_id, book_start, book_end) VALUES ('{}', '{}', '{}', '{}')""".format(data['user_id'], int(room_number), book_start, book_end)
                 cur.execute(insert_query)
                 conn.commit()

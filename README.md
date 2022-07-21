@@ -1,6 +1,6 @@
-Room booking system!
+Room booking system! IT WORKS only on terminal!
 
-TO RUN THE PROJECT BEGIN FROM --->python auth.py<---!!!
+TO RUN THE PROJECT BEGIN FROM ---> python auth.py <---!!!
 
 DBSM is POSTGRESQL!
 
