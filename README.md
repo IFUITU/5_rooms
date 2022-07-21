@@ -1,16 +1,24 @@
 Room booking system!
 
-TO RUN THE PROJECT BEGIN FROM --->python auth.py<---
+TO RUN THE PROJECT BEGIN FROM --->python auth.py<---!!!
 
-DB is POSTGRESQL
+DBSM is POSTGRESQL!
 
 create database.ini file!
-#example---------------
+-------example---------
 [postgresql]
 host=localhost
 database=db_name
 user=postgres
 password=postgres
-#-----------------------
+-----------------------
 
-TO MAIL MESSAGE smtplib is used!
+TO MAIL A MESSAGE smtplib is used!
+smtp_server --> ('smtp.gmail.com', 465)
+
+WORKING STEPS!
+1)Authentication Register | Login
+2)Checking and choosing a room!
+3)Choose a date from which to which period of time you want to book that room!
+4)Send a message to your email account about your booking!
+5)Finish
