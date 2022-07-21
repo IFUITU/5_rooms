@@ -7,7 +7,6 @@ def send_email(data):
     subject = data['subject']
     body = data['body']
 
-
     email_text = """\
     From: %s
     To: %s

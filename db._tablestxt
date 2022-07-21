@@ -1,0 +1,25 @@
+CREATE TABLE accounts (
+	user_id serial PRIMARY KEY,
+	password VARCHAR ( 50 ) NOT NULL,
+	email VARCHAR ( 255 ) UNIQUE NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+    last_login TIMESTAMP 
+);
+
+CREATE TABLE room (
+    room_id serial PRIMARY KEY,
+    room_number INT NOT NULL,
+);
+
+CREATE TABLE test (
+    user_id INT NOT NULL,
+    room_id INT NOT NULL,
+    PRIMARY KEY (user_id, room_id),
+    FOREIGN KEY (user_id)
+        REFERENCES accounts(user_id),
+    FOREIGN KEY (room_id)
+        REFERENCES room(room_id),
+    book_start TIMESTAMP NOT NULL,
+    book_end TIMESTAMP NOT NULL,
+);
+
