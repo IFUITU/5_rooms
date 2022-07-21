@@ -1,15 +1,13 @@
 import psycopg2
 from connect import conn
 from datetime import date, datetime
-
+from sent_email import send_email
 try:
     # create a cursor
     cur = conn.cursor()
 except (Exception, psycopg2.DatabaseError) as error:
     print(error)
 
-def send_email():
-    print("EMAIL Send")
 
 def main(data):
     print(f"Choose your room!".center(50, "-"))
@@ -30,7 +28,7 @@ def main(data):
                 for index,i in enumerate(record):
                     print(index+1, ')', 'from', i[1].strftime("%d/%m/%Y"), 'to', i[2].strftime("%d/%m/%Y"))
             else:
-                print("No booking data for this room!")
+                print("No booking data for this room yet!")
             print("-".center(50,"-"))
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
@@ -80,9 +78,11 @@ def main(data):
                 if record != None:
                     send_or_not = input("Do you want to send info. about your book to your email? yes/no:")
                     if send_or_not == "yes":
-                        send_email()
+                        send_email({"to_user":data['email'], 'subject':'Booked a room!', 'body':f"Your room is {room_number}, from {book_start} to {book_end}!"})
+
                     print(f"Your room is {room_number}, from {book_start} to {book_end}!")
-                    print("Your boking is done".center(60,'-'))
+                    print("Done".center(50,'-'))
+
                     back_or_end = input("Finish or back to rooms? room/end:")
                     if back_or_end == "room":
                         main(data)

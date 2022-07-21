@@ -1,0 +1,7 @@
+certifi==2022.6.15
+charset-normalizer==2.1.0
+idna==3.3
+psycopg2==2.9.3
+python-http-client==3.3.7
+starkbank-ecdsa==2.0.3
+urllib3==1.26.10
