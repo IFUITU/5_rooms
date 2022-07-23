@@ -15,9 +15,11 @@ CREATE TABLE queue (
     user_id INT NOT NULL,
     room_id INT NOT NULL,
     FOREIGN KEY (user_id)
-        REFERENCES accounts(user_id),
+        REFERENCES accounts(user_id)
+        ON DELETE CASCADE,
     FOREIGN KEY (room_id)
-        REFERENCES room(room_id),
+        REFERENCES room(room_id)
+        ON DELETE SET NULL,
     book_start TIMESTAMP NOT NULL,
     book_end TIMESTAMP NOT NULL,
 );
