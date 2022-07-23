@@ -11,7 +11,10 @@ host=localhost\
 database=db_name\
 user=postgres\
 password=postgres\
-#-----------------------
+#-----------------------/
+
+db_tables.txt file/
+TO CREATE TABLES IN DB./
 
 TO MAIL A MESSAGE smtplib is used!\
 smtp_server --> ('smtp.gmail.com', 465)
