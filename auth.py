@@ -34,7 +34,7 @@ def reg():
             reg()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-
+        reg()
 def log():
     try:
         # execute a statement LOGIN
@@ -59,7 +59,8 @@ def log():
             log()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-
+        log()
+        
 def authenticate():
     reg_or_log = input(" <Register:1 or Login:2> //:")
     if reg_or_log == '1':

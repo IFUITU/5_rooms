@@ -49,11 +49,18 @@ def main(data):
         return False
 
     def book(): #room booking  proccess
-        book_start = None
-        book_end = None
+        print("To go back to choose rooms enter back.")
+
+        book_start = input("Start time <Example day/month/YYYY> //:")
+        if book_start == "back":
+            main(data)
+        book_end = input("End time <Example day/month/YYYY> //:")
+        if book_end == "back":
+            main(data)
+ 
         try:
-            book_start = datetime.strptime(input("Start time <Example day/month/YYYY> //:"),'%d/%m/%Y').date()
-            book_end = datetime.strptime(input("End time <Example day/month/YYYY> //:"),'%d/%m/%Y').date()
+            book_start = datetime.strptime(book_start,'%d/%m/%Y').date()
+            book_end = datetime.strptime(book_end,'%d/%m/%Y').date()
         except Exception as ex:
             print(ex)
             book()
@@ -78,6 +85,7 @@ def main(data):
                 if record != None:
                     send_or_not = input("Do you want to send info. about your book to your email? yes/no:")
                     if send_or_not == "yes":
+                        print('Loading...')
                         send_email({"to_user":data['email'], 'subject':'Booked a room!', 'body':f"Your room is {room_number}, from {book_start} to {book_end}!"})
 
                     print(f"Your room is {room_number}, from {book_start} to {book_end}!")
@@ -86,6 +94,8 @@ def main(data):
                     back_or_end = input("Finish or back to rooms? room/end:")
                     if back_or_end == "room":
                         main(data)
+                    else:
+                        return
             except (Exception, psycopg2.DatabaseError) as error:
                 print(error)
                 main(data)
