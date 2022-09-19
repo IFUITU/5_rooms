@@ -34,7 +34,7 @@ def main(data):
             print(error)
     get_book_list({"room_id":room_number})
 
-    def is_empty(data): #to check if room is empty
+    def is_not_empty(data): #to check if room is empty
         try:
             check_query = f"""select exists(select 1 from queue where 
             room_id='{data['room_id']}' and '{data['book_start']}' >= book_start and '{data['book_start']}' < book_end 
@@ -73,7 +73,7 @@ def main(data):
             book()
         else:
             try:
-                if is_empty({"room_id":int(room_number), "book_start":book_start, "book_end":book_end}):
+                if is_not_empty({"room_id":int(room_number), "book_start":book_start, "book_end":book_end}):
                     print(f"№{room_number} Room booked in this period of time! Choose another date!")
                     main(data)
                 
